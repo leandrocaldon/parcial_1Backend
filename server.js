@@ -12,8 +12,17 @@ const purchaseRoutes = require('./routes/purchases');
 const app = express();
 const PORT = process.env.PORT || 3500; // Cambiado a puerto 3500
 
+// Configuración de CORS para permitir frontend en Vercel y localhost
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://parcial-1-frontend.vercel.app'
+];
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 // Middlewares
-app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
